@@ -1,0 +1,664 @@
+esphome:
+  name: "esphome-io-32"
+  friendly_name: "ESPHome IO 32"
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+ethernet:
+  type: W5500
+  mosi_pin: 11
+  miso_pin: 12
+  clk_pin: 10
+  cs_pin: 9
+  interrupt_pin: 13
+  reset_pin: 14
+  clock_speed: 25MHz
+  use_address: true
+
+logger:
+
+api:
+
+ota:
+  platform: esphome
+
+i2c:
+  sda: 47
+  scl: 48
+  scan: true
+
+mcp23017:
+  - id: mcp1
+    address: 0x20
+  - id: mcp2
+    address: 0x21
+  - id: mcp3
+    address: 0x22
+  - id: mcp4
+    address: 0x23
+
+switch:
+  # Przekaźniki 1-16 na mcp1
+  - platform: gpio
+    name: "Kanał 01"
+    id: relay_01
+    pin:
+      number: 0
+      mcp23xxx: mcp1
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 02"
+    id: relay_02
+    pin:
+      mcp23xxx: mcp1
+      number: 1
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 03"
+    id: relay_03
+    pin:
+      mcp23xxx: mcp1
+      number: 2
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 04"
+    id: relay_04
+    pin:
+      mcp23xxx: mcp1
+      number: 3
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 5"
+    id: relay_05
+    pin:
+      mcp23xxx: mcp1
+      number: 4
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 6"
+    id: relay_06
+    pin:
+      mcp23xxx: mcp1
+      number: 5
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 07"
+    id: relay_07
+    pin:
+      mcp23xxx: mcp1
+      number: 6
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 08"
+    id: relay_08
+    pin:
+      mcp23xxx: mcp1
+      number: 7
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 09"
+    id: relay_09
+    pin:
+      mcp23xxx: mcp1
+      number: 8
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 10"
+    id: relay_10
+    pin:
+      mcp23xxx: mcp1
+      number: 9
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 11"
+    id: relay_11
+    pin:
+      mcp23xxx: mcp1
+      number: 10
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 12"
+    id: relay_12
+    pin:
+      mcp23xxx: mcp1
+      number: 11
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 13"
+    id: relay_13
+    pin:
+      mcp23xxx: mcp1
+      number: 12
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 14"
+    id: relay_14
+    pin:
+      mcp23xxx: mcp1
+      number: 13
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 15"
+    id: relay_15
+    pin:
+      mcp23xxx: mcp1
+      number: 14
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 16"
+    id: relay_16
+    pin:
+      mcp23xxx: mcp1
+      number: 15
+      mode: OUTPUT
+      inverted: false
+      
+  # Przekaźniki 17-32 na mcp2
+  - platform: gpio
+    name: "Kanał 17"
+    id: relay_17
+    pin:
+      mcp23xxx: mcp2
+      number: 0
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 18"
+    id: relay_18
+    pin:
+      mcp23xxx: mcp2
+      number: 1
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 19"
+    id: relay_19
+    pin:
+      mcp23xxx: mcp2
+      number: 2
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 20"
+    id: relay_20
+    pin:
+      mcp23xxx: mcp2
+      number: 3
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 21"
+    id: relay_21
+    pin:
+      mcp23xxx: mcp2
+      number: 4
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 22"
+    id: relay_22
+    pin:
+      mcp23xxx: mcp2
+      number: 5
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 23"
+    id: relay_23
+    pin:
+      mcp23xxx: mcp2
+      number: 6
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 24"
+    id: relay_24
+    pin:
+      mcp23xxx: mcp2
+      number: 7
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 25"
+    id: relay_25
+    pin:
+      mcp23xxx: mcp2
+      number: 8
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 26"
+    id: relay_26
+    pin:
+      mcp23xxx: mcp2
+      number: 9
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 27"
+    id: relay_27
+    pin:
+      mcp23xxx: mcp2
+      number: 10
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 28"
+    id: relay_28
+    pin:
+      mcp23xxx: mcp2
+      number: 11
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 29"
+    id: relay_29
+    pin:
+      mcp23xxx: mcp2
+      number: 12
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 30"
+    id: relay_30
+    pin:
+      mcp23xxx: mcp2
+      number: 13
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 31"
+    id: relay_31
+    pin:
+      mcp23xxx: mcp2
+      number: 14
+      mode: OUTPUT
+      inverted: false
+  - platform: gpio
+    name: "Kanał 32"
+    id: relay_32
+    pin:
+      mcp23xxx: mcp2
+      number: 15
+      mode: OUTPUT
+      inverted: false
+
+
+binary_sensor:
+  # Wejścia 1-16 (MCP23017 0x22)
+  - platform: gpio
+    name: "Wejście 1"
+    pin: 
+      mcp23xxx: mcp3
+      number: 0
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_01
+  - platform: gpio
+    name: "Wejście 2"
+    pin: 
+      mcp23xxx: mcp3
+      number: 1
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_02
+  - platform: gpio
+    name: "Wejście 3"
+    pin: 
+      mcp23xxx: mcp3
+      number: 2
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_03
+  - platform: gpio
+    name: "Wejście 4"
+    pin: 
+      mcp23xxx: mcp3
+      number: 3
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_04
+  - platform: gpio
+    name: "Wejście 5"
+    pin: 
+      mcp23xxx: mcp3
+      number: 4
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_05
+  - platform: gpio
+    name: "Wejście 6"
+    pin: 
+      mcp23xxx: mcp3
+      number: 5
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_06
+  - platform: gpio
+    name: "Wejście 7"
+    pin: 
+      mcp23xxx: mcp3
+      number: 6
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_07
+  - platform: gpio
+    name: "Wejście 8"
+    pin: 
+      mcp23xxx: mcp3
+      number: 7
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_08
+  - platform: gpio
+    name: "Wejście 9"
+    pin: 
+      mcp23xxx: mcp3
+      number: 8
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_09
+  - platform: gpio
+    name: "Wejście 10"
+    pin: 
+      mcp23xxx: mcp3
+      number: 9
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_10
+  - platform: gpio
+    name: "Wejście 11"
+    pin: 
+      mcp23xxx: mcp3
+      number: 10
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_11
+  - platform: gpio
+    name: "Wejście 12"
+    pin: 
+      mcp23xxx: mcp3
+      number: 11
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_12
+  - platform: gpio
+    name: "Wejście 13"
+    pin: 
+      mcp23xxx: mcp3
+      number: 12
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_13
+  - platform: gpio
+    name: "Wejście 14"
+    pin: 
+      mcp23xxx: mcp3
+      number: 13
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_14
+  - platform: gpio
+    name: "Wejście 15"
+    pin: 
+      mcp23xxx: mcp3
+      number: 14
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_15
+  - platform: gpio
+    name: "Wejście 16"
+    pin: 
+      mcp23xxx: mcp3
+      number: 15
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_16
+
+  # Wejścia 17-32 (MCP23017 0x23)
+  - platform: gpio
+    name: "Wejście 17"
+    pin:
+      mcp23xxx: mcp4
+      number: 0
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_17
+  - platform: gpio
+    name: "Wejście 18"
+    pin:
+      mcp23xxx: mcp4
+      number: 1
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_18
+  - platform: gpio
+    name: "Wejście 19"
+    pin:
+      mcp23xxx: mcp4
+      number: 2
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_19
+  - platform: gpio
+    name: "Wejście 20"
+    pin:
+      mcp23xxx: mcp4
+      number: 3
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_20
+  - platform: gpio
+    name: "Wejście 21"
+    pin:
+      mcp23xxx: mcp4
+      number: 4
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_21
+  - platform: gpio
+    name: "Wejście 22"
+    pin:
+      mcp23xxx: mcp4
+      number: 5
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_22
+  - platform: gpio
+    name: "Wejście 23"
+    pin:
+      mcp23xxx: mcp4
+      number: 6
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_23
+  - platform: gpio
+    name: "Wejście 24"
+    pin:
+      mcp23xxx: mcp4
+      number: 7
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_24
+  - platform: gpio
+    name: "Wejście 25"
+    pin:
+      mcp23xxx: mcp4
+      number: 8
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_25
+  - platform: gpio
+    name: "Wejście 26"
+    pin:
+      mcp23xxx: mcp4
+      number: 9
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_26
+  - platform: gpio
+    name: "Wejście 27"
+    pin:
+      mcp23xxx: mcp4
+      number: 10
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_27
+  - platform: gpio
+    name: "Wejście 28"
+    pin:
+      mcp23xxx: mcp4
+      number: 11
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_28
+  - platform: gpio
+    name: "Wejście 29"
+    pin:
+      mcp23xxx: mcp4
+      number: 12
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_29
+  - platform: gpio
+    name: "Wejście 30"
+    pin:
+      mcp23xxx: mcp4
+      number: 13
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_30
+  - platform: gpio
+    name: "Wejście 31"
+    pin:
+      mcp23xxx: mcp4
+      number: 14
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_31
+  - platform: gpio
+    name: "Wejście 32"
+    pin:
+      mcp23xxx: mcp4
+      number: 15
+      mode: INPUT
+      inverted: false
+    on_press:
+      - switch.toggle: relay_32
+
+  # Wejścia lokalne GPIO1-GPIO8 (IN33-IN40)
+  - platform: gpio
+    pin:
+      number: 1
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 33"
+    id: input_33
+  - platform: gpio
+    pin:
+      number: 2
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 34"
+    id: input_34
+  - platform: gpio
+    pin:
+      number: 3
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 35"
+    id: input_35
+  - platform: gpio
+    pin:
+      number: 4
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 36"
+    id: input_36
+  - platform: gpio
+    pin:
+      number: 5
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 37"
+    id: input_37
+  - platform: gpio
+    pin:
+      number: 6
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 38"
+    id: input_38
+  - platform: gpio
+    pin:
+      number: 7
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 39"
+    id: input_39
+  - platform: gpio
+    pin:
+      number: 8
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Wejście 40"
+    id: input_40
+
+sensor:
+  - platform: uptime
+    name: "Uptime"
+    id: uptime_sensor
+
+output:
+  - platform: ledc
+    pin: 46
+    id: buzzer
