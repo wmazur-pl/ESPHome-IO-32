@@ -1,0 +1,10 @@
+external_components:
+  - source: github://wmazur-pl/esphome-LM75@v1
+    components: [ lm75 ]
+
+sensor:
+  - platform: lm75
+    id: device_temp
+    name: "LM75 Temperature"
+    update_interval: 30s
+    address: 0x49
