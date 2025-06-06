@@ -4,10 +4,10 @@ sensor:
     shunt_resistance: 0.1 ohm
     current:
       id: ina_current
-      name: "INA226 Prąd"
+      name: "INA226 Current"
     power:
       id: ina_pover
-      name: "INA226 Moc"
+      name: "INA226 Power"
     bus_voltage:
       id: ina_bus_voltage
       name: "INA226 Bus Voltage"
