@@ -1,0 +1,17 @@
+sensor:
+  - platform: ina226
+    address: 0x45
+    shunt_resistance: 0.1 ohm
+    current:
+      id: ina_current
+      name: "INA226 Prąd"
+    power:
+      id: ina_pover
+      name: "INA226 Moc"
+    bus_voltage:
+      id: ina_bus_voltage
+      name: "INA226 Bus Voltage"
+    shunt_voltage:
+      id: ina_shunt_voltage
+      name: 'INA219 Shunt Voltage'
+    update_interval: 30s
