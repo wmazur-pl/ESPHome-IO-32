@@ -1,0 +1,4 @@
+i2c:
+  sda: 47
+  scl: 48
+  scan: true

@@ -1,0 +1,9 @@
+mcp23017:
+  - id: mcp1
+    address: 0x20
+  - id: mcp2
+    address: 0x21
+  - id: mcp3
+    address: 0x22
+  - id: mcp4
+    address: 0x23
