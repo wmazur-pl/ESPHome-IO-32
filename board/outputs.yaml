@@ -1,112 +1,112 @@
 output:
   # Relay 1-16 in mcp1
   - platform: gpio
-    id: out_01
+    id: relay_01
     pin:
       number: 0
       mcp23xxx: mcp1
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_02
+    id: relay_02
     pin:
       mcp23xxx: mcp1
       number: 1
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_03
+    id: relay_03
     pin:
       mcp23xxx: mcp1
       number: 2
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_04
+    id: relay_04
     pin:
       mcp23xxx: mcp1
       number: 3
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_05
+    id: relay_05
     pin:
       mcp23xxx: mcp1
       number: 4
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_06
+    id: relay_06
     pin:
       mcp23xxx: mcp1
       number: 5
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_07
+    id: relay_07
     pin:
       mcp23xxx: mcp1
       number: 6
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_08
+    id: relay_08
     pin:
       mcp23xxx: mcp1
       number: 7
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_09
+    id: relay_09
     pin:
       mcp23xxx: mcp1
       number: 8
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_10
+    id: relay_10
     pin:
       mcp23xxx: mcp1
       number: 9
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_11
+    id: relay_11
     pin:
       mcp23xxx: mcp1
       number: 10
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_12
+    id: relay_12
     pin:
       mcp23xxx: mcp1
       number: 11
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_13
+    id: relay_13
     pin:
       mcp23xxx: mcp1
       number: 12
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_14
+    id: relay_14
     pin:
       mcp23xxx: mcp1
       number: 13
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_15
+    id: relay_15
     pin:
       mcp23xxx: mcp1
       number: 14
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_16
+    id: relay_16
     pin:
       mcp23xxx: mcp1
       number: 15
@@ -115,112 +115,112 @@ output:
       
   # Relay 17-32 in mcp2
   - platform: gpio
-    id: out_17
+    id: relay_17
     pin:
       mcp23xxx: mcp2
       number: 0
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_18
+    id: relay_18
     pin:
       mcp23xxx: mcp2
       number: 1
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_19
+    id: relay_19
     pin:
       mcp23xxx: mcp2
       number: 2
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_20
+    id: relay_20
     pin:
       mcp23xxx: mcp2
       number: 3
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_21
+    id: relay_21
     pin:
       mcp23xxx: mcp2
       number: 4
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_22
+    id: relay_22
     pin:
       mcp23xxx: mcp2
       number: 5
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_23
+    id: relay_23
     pin:
       mcp23xxx: mcp2
       number: 6
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_24
+    id: relay_24
     pin:
       mcp23xxx: mcp2
       number: 7
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_25
+    id: relay_25
     pin:
       mcp23xxx: mcp2
       number: 8
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_26
+    id: relay_26
     pin:
       mcp23xxx: mcp2
       number: 9
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_27
+    id: relay_27
     pin:
       mcp23xxx: mcp2
       number: 10
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_28
+    id: relay_28
     pin:
       mcp23xxx: mcp2
       number: 11
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_29
+    id: relay_29
     pin:
       mcp23xxx: mcp2
       number: 12
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_30
+    id: relay_30
     pin:
       mcp23xxx: mcp2
       number: 13
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_31
+    id: relay_31
     pin:
       mcp23xxx: mcp2
       number: 14
       mode: OUTPUT
       inverted: false
   - platform: gpio
-    id: out_32
+    id: relay_32
     pin:
       mcp23xxx: mcp2
       number: 15
