@@ -1,0 +1,38 @@
+sensor:
+  - platform: uptime
+    id: esp32_uptime_seconds
+    update_interval: 60s
+    entity_category: diagnostic
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: esp32_uptime
+            state: !lambda |-
+              int seconds = round(id(esp32_uptime_seconds).raw_state);
+              int days = seconds / 86400;
+              seconds %= 86400;
+              int hours = seconds / 3600;
+              seconds %= 3600;
+              int minutes = seconds / 60;
+              seconds %= 60;
+
+              std::string result;
+
+              if (days > 0) {
+                result += to_string(days) + "d ";
+                result += to_string(hours) + "h";
+              } else if (hours > 0) {
+                result += to_string(hours) + "h ";
+                result += to_string(minutes) + "m";
+              } else {
+                result += to_string(minutes) + "m";
+              }
+
+              return result.c_str();
+
+text_sensor:
+  - platform: template
+    name: "Uptime"
+    id: esp32_uptime
+    entity_category: diagnostic
+    icon: mdi:timer
