@@ -1,0 +1,561 @@
+esphome:
+  name: esphome-io-32
+  friendly_name: ESPHome IO 32
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  platform: esphome
+
+packages:
+  internals_packages:
+    url: https://github.com/wmazur-pl/ESPHome-IO-32
+    files: [board/buzzer.yaml, board/onewire_bus.yaml, board/i2c.yaml, board/ina226.yaml, board/lm75.yaml, board/mcp23017.yaml, board/outputs.yaml, board/uptime_sensor.yaml, board/ethernet.yaml]
+
+light:
+  - platform: binary
+    name: 'Light 01'
+    output: relay_01
+    id: out_01
+  - platform: binary
+    name: 'Light 02'
+    output: relay_02
+    id: out_02
+  - platform: binary
+    name: 'Light 03'
+    output: relay_03
+    id: out_03
+  - platform: binary
+    name: 'Light 04'
+    output: relay_04
+    id: out_04
+  - platform: binary
+    name: 'Light 05'
+    output: relay_05
+    id: out_05
+  - platform: binary
+    name: 'Light 06'
+    output: relay_06
+    id: out_06
+  - platform: binary
+    name: 'Light 07'
+    output: relay_07
+    id: out_07
+  - platform: binary
+    name: 'Light 08'
+    output: relay_08
+    id: out_08
+  - platform: binary
+    name: 'Light 09'
+    output: relay_09
+    id: out_09
+  - platform: binary
+    name: 'Light 10'
+    output: relay_10
+    id: out_10
+  - platform: binary
+    name: 'Light 11'
+    output: relay_11
+    id: out_11
+  - platform: binary
+    name: 'Light 12'
+    output: relay_12
+    id: out_12
+  - platform: binary
+    name: 'Light 13'
+    output: relay_13
+    id: out_13
+  - platform: binary
+    name: 'Light 14'
+    output: relay_14
+    id: out_14
+  - platform: binary
+    name: 'Light 15'
+    output: relay_15
+    id: out_15
+  - platform: binary
+    name: 'Light 16'
+    output: relay_16
+    id: out_16
+  - platform: binary
+    name: 'Light 17'
+    output: relay_17
+    id: out_17
+  - platform: binary
+    name: 'Light 18'
+    output: relay_18
+    id: out_18
+  - platform: binary
+    name: 'Light 19'
+    output: relay_19
+    id: out_19
+  - platform: binary
+    name: 'Light 20'
+    output: relay_20
+    id: out_20
+  - platform: binary
+    name: 'Light 21'
+    output: relay_21
+    id: out_21
+  - platform: binary
+    name: 'Light 22'
+    output: relay_22
+    id: out_22
+  - platform: binary
+    name: 'Light 23'
+    output: relay_23
+    id: out_23
+  - platform: binary
+    name: 'Light 24'
+    output: relay_24
+    id: out_24
+  - platform: binary
+    name: 'Light 25'
+    output: relay_25
+    id: out_25
+  - platform: binary
+    name: 'Light 26'
+    output: relay_26
+    id: out_26
+  - platform: binary
+    name: 'Light 27'
+    output: relay_27
+    id: out_27
+  - platform: binary
+    name: 'Light 28'
+    output: relay_28
+    id: out_28
+  - platform: binary
+    name: 'Light 29'
+    output: relay_29
+    id: out_29
+  - platform: binary
+    name: 'Light 30'
+    output: relay_30
+    id: out_30
+  - platform: binary
+    name: 'Light 31'
+    output: relay_31
+    id: out_31
+  - platform: binary
+    name: 'Light 32'
+    output: relay_32
+    id: out_32
+
+binary_sensor:
+  - platform: gpio
+    name: "Input 01"
+    pin: 
+      mcp23xxx: mcp3
+      number: 0
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_01
+    on_release:
+      - light.toggle: out_01
+  - platform: gpio
+    name: "Input 02"
+    pin: 
+      mcp23xxx: mcp3
+      number: 1
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_02
+    on_release:
+      - light.toggle: out_02
+  - platform: gpio
+    name: "Input 03"
+    pin: 
+      mcp23xxx: mcp3
+      number: 2
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_03
+    on_release:
+      - light.toggle: out_03
+  - platform: gpio
+    name: "Input 04"
+    pin: 
+      mcp23xxx: mcp3
+      number: 3
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_04
+    on_release:
+      - light.toggle: out_04
+  - platform: gpio
+    name: "Input 05"
+    pin: 
+      mcp23xxx: mcp3
+      number: 4
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_05
+    on_release:
+      - light.toggle: out_05
+  - platform: gpio
+    name: "Input 06"
+    pin: 
+      mcp23xxx: mcp3
+      number: 5
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_06
+    on_release:
+      - light.toggle: out_06
+  - platform: gpio
+    name: "Input 07"
+    pin: 
+      mcp23xxx: mcp3
+      number: 6
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_07
+    on_release:
+      - light.toggle: out_07
+  - platform: gpio
+    name: "Input 08"
+    pin: 
+      mcp23xxx: mcp3
+      number: 7
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_08
+    on_release:
+      - light.toggle: out_08
+  - platform: gpio
+    name: "Input 09"
+    pin: 
+      mcp23xxx: mcp3
+      number: 8
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_09
+    on_release:
+      - light.toggle: out_09
+  - platform: gpio
+    name: "Input 10"
+    pin: 
+      mcp23xxx: mcp3
+      number: 9
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_10
+    on_release:
+      - light.toggle: out_10
+  - platform: gpio
+    name: "Input 11"
+    pin: 
+      mcp23xxx: mcp3
+      number: 10
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_11
+    on_release:
+      - light.toggle: out_11
+  - platform: gpio
+    name: "Input 12"
+    pin: 
+      mcp23xxx: mcp3
+      number: 11
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_12
+    on_release:
+      - light.toggle: out_12
+  - platform: gpio
+    name: "Input 13"
+    pin: 
+      mcp23xxx: mcp3
+      number: 12
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_13
+    on_release:
+      - light.toggle: out_13
+  - platform: gpio
+    name: "Input 14"
+    pin: 
+      mcp23xxx: mcp3
+      number: 13
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_14
+    on_release:
+      - light.toggle: out_14
+  - platform: gpio
+    name: "Input 15"
+    pin: 
+      mcp23xxx: mcp3
+      number: 14
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_15
+    on_release:
+      - light.toggle: out_15
+  - platform: gpio
+    name: "Input 16"
+    pin: 
+      mcp23xxx: mcp3
+      number: 15
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_16
+    on_release:
+      - light.toggle: out_16
+  - platform: gpio
+    name: "Input 17"
+    pin:
+      mcp23xxx: mcp4
+      number: 0
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_17
+    on_release:
+      - light.toggle: out_17
+  - platform: gpio
+    name: "Input 18"
+    pin:
+      mcp23xxx: mcp4
+      number: 1
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_18
+    on_release:
+      - light.toggle: out_18
+  - platform: gpio
+    name: "Input 19"
+    pin:
+      mcp23xxx: mcp4
+      number: 2
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_19
+    on_release:
+      - light.toggle: out_19
+  - platform: gpio
+    name: "Input 20"
+    pin:
+      mcp23xxx: mcp4
+      number: 3
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_20
+    on_release:
+      - light.toggle: out_20
+  - platform: gpio
+    name: "Input 21"
+    pin:
+      mcp23xxx: mcp4
+      number: 4
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_21
+    on_release:
+      - light.toggle: out_21
+  - platform: gpio
+    name: "Input 22"
+    pin:
+      mcp23xxx: mcp4
+      number: 5
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_22
+    on_release:
+      - light.toggle: out_22
+  - platform: gpio
+    name: "Input 23"
+    pin:
+      mcp23xxx: mcp4
+      number: 6
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_23
+    on_release:
+      - light.toggle: out_23
+  - platform: gpio
+    name: "Input 24"
+    pin:
+      mcp23xxx: mcp4
+      number: 7
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_24
+    on_release:
+      - light.toggle: out_24
+  - platform: gpio
+    name: "Input 25"
+    pin:
+      mcp23xxx: mcp4
+      number: 8
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_25
+    on_release:
+      - light.toggle: out_25
+  - platform: gpio
+    name: "Input 26"
+    pin:
+      mcp23xxx: mcp4
+      number: 9
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_26
+    on_release:
+      - light.toggle: out_26
+  - platform: gpio
+    name: "Input 27"
+    pin:
+      mcp23xxx: mcp4
+      number: 10
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_27
+    on_release:
+      - light.toggle: out_27
+  - platform: gpio
+    name: "Input 28"
+    pin:
+      mcp23xxx: mcp4
+      number: 11
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_28
+    on_release:
+      - light.toggle: out_28
+  - platform: gpio
+    name: "Input 29"
+    pin:
+      mcp23xxx: mcp4
+      number: 12
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_29
+    on_release:
+      - light.toggle: out_29
+  - platform: gpio
+    name: "Input 30"
+    pin:
+      mcp23xxx: mcp4
+      number: 13
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_30
+    on_release:
+      - light.toggle: out_30
+  - platform: gpio
+    name: "Input 31"
+    pin:
+      mcp23xxx: mcp4
+      number: 14
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_31
+    on_release:
+      - light.toggle: out_31
+  - platform: gpio
+    name: "Input 32"
+    pin:
+      mcp23xxx: mcp4
+      number: 15
+      mode: INPUT
+      inverted: true
+    on_press:
+      - light.toggle: out_32
+    on_release:
+      - light.toggle: out_32
+  - platform: gpio
+    pin:
+      number: 1
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 33"
+    id: input_33
+  - platform: gpio
+    pin:
+      number: 2
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 34"
+    id: input_34
+  - platform: gpio
+    pin:
+      number: 3
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 35"
+    id: input_35
+  - platform: gpio
+    pin:
+      number: 4
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 36"
+    id: input_36
+  - platform: gpio
+    pin:
+      number: 5
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 37"
+    id: input_37
+  - platform: gpio
+    pin:
+      number: 6
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 38"
+    id: input_38
+  - platform: gpio
+    pin:
+      number: 7
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 39"
+    id: input_39
+  - platform: gpio
+    pin:
+      number: 8
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Input 40"
+    id: input_40
