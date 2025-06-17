@@ -1,0 +1,63 @@
+debug:
+  update_interval: 60s
+
+sensor:
+  - platform: debug
+    free:
+      internal: true
+      id: debug_free_heap
+    loop_time:
+      name: "ESP Loop Time"
+      unit_of_measurement: "ms"
+      id: debug_loop_time
+    cpu_frequency:
+      internal: true
+      id: debug_cpu_freq
+
+  - platform: template
+    name: "ESP CPU Frequency"
+    unit_of_measurement: "MHz"
+    accuracy_decimals: 0
+    icon: mdi:speedometer
+    entity_category: diagnostic
+    lambda: |-
+      return (float(id(debug_cpu_freq).state) / 1000000.0f);
+
+  - platform: template
+    name: "ESP Free Heap"
+    unit_of_measurement: "kB"
+    accuracy_decimals: 0
+    icon: mdi:memory
+    entity_category: diagnostic
+    lambda: |-
+      return (float(id(debug_free_heap).state) / 1024.0f);
+
+  - platform: template
+    name: "ESP Free Heap"
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    icon: mdi:memory
+    entity_category: diagnostic
+    lambda: |-
+      float heap = id(debug_free_heap).state;
+      float max_heap = 12 * 1024 * 1024; // 12 MB
+      float percent = (heap / max_heap) * 100.0;
+      if (percent > 100.0) percent = 100.0;
+      if (percent < 0.0) percent = 0.0;
+      return percent;
+
+  - platform: template
+    name: "ESP CPU Load"
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    icon: mdi:cpu-64-bit
+    entity_category: diagnostic
+    update_interval: 60s
+    lambda: |-
+      float loop_ms = id(debug_loop_time).state;
+      float min_loop = 5.0;
+      float max_loop = 100.0;
+      float usage = (loop_ms - min_loop) / (max_loop - min_loop) * 100.0;
+      if (usage < 0.0f) usage = 0.0f;
+      if (usage > 100.0f) usage = 100.0f;
+      return usage;
