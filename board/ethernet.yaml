@@ -1,0 +1,19 @@
+ethernet:
+  id: eth
+  type: W5500
+  clk_pin: GPIO10
+  mosi_pin: GPIO12
+  miso_pin: GPIO11
+  cs_pin: GPIO9
+  interrupt_pin: GPIO13
+  reset_pin: GPIO14
+
+text_sensor:
+  - platform: template
+    name: 'IP Address'
+    id: ip_address
+    entity_category: diagnostic
+    icon: 'mdi:ip-network'
+    lambda: |-
+      return id(eth).get_ip_addresses().empty() ? "0.0.0.0" : id(eth).get_ip_addresses()[0].str();
+    update_interval: 60s
