@@ -18,7 +18,7 @@ ota:
 packages:
   internals_packages:
     url: https://github.com/wmazur-pl/ESPHome-IO-32
-    files: [board/buzzer.yaml, board/onewire_bus.yaml, board/i2c.yaml, board/lm75.yaml, board/ina226.yaml, board/ads1115.yaml, board/battery_rtc.yaml, board/mcp23017.yaml, board/outputs.yaml, board/uptime_sensor.yaml, board/ethernet.yaml, board/esp32_debug.yaml, board/screen_lights.yaml]
+    files: [board/buzzer.yaml, board/onewire_bus.yaml, board/i2c.yaml, board/lm75.yaml, board/ina226.yaml, board/ads1115.yaml, board/battery_rtc.yaml, board/mcp23017.yaml, board/outputs.yaml, board/uptime_sensor.yaml, board/ethernet.yaml, board/esp32_debug.yaml, board/screen_lights.yaml, board/syn480r.yaml]
 
 light:
   - platform: binary
