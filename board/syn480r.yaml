@@ -1,0 +1,46 @@
+# Experimental !!!
+
+text_sensor:
+  - platform: template
+    name: "SYN480 - Last RF433 Signal"
+    id: last_rf_code
+    entity_category: diagnostic
+    icon: mdi:remote
+
+remote_receiver:
+  pin: GPIO21
+  dump: rc_switch
+  tolerance: 60%
+  filter: 4us
+  idle: 4ms
+  buffer_size: 4kb
+  on_rc_switch:
+    then:
+      - lambda: |-
+          auto code = x.code;
+
+          int bits = 0;
+          auto temp = code;
+          while (temp > 0) {
+            bits++;
+            temp >>= 1;
+          }
+
+          if (bits < 20) {
+            return;
+          }
+
+          std::string bitstream = "";
+          for (int i = bits - 1; i >= 0; i--) {
+            bitstream += ((code >> i) & 1) ? '1' : '0';
+          }
+
+          std::string formatted;
+          for (size_t i = 0; i < bitstream.length(); i++) {
+            formatted += bitstream[i];
+            if ((i + 1) % 4 == 0 && i + 1 < bitstream.length()) {
+              formatted += ' ';
+            }
+          }
+
+          id(last_rf_code).publish_state(formatted);
