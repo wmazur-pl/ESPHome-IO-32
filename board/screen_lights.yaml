@@ -1,0 +1,395 @@
+esphome:
+  on_boot: 
+    priority: 0
+    then:
+      - display.page.show: boot
+      - script.execute: end_boot_script
+
+
+spi:
+  clk_pin: 42
+  mosi_pin: 41
+  miso_pin: 40
+  interface: spi3
+
+output:
+  - platform: ledc
+    pin: 45
+    id: tft_backlight
+    frequency: 5000 Hz
+
+light:
+  - platform: monochromatic
+    output: tft_backlight
+    id: backlight
+    internal: true
+    restore_mode: ALWAYS_ON
+
+image:
+  - file: "https://esphome.io/_static/made-for-esphome-black-on-white.png"
+    id: esphome_logo
+    type: rgb565
+    transparency: alpha_channel
+    resize: 300x89
+  - file: "https://esphome.io/_static/made-for-esphome-black-on-white.png"
+    id: esphome_logo_mini
+    type: rgb565
+    transparency: alpha_channel
+    resize: 160x47
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/arrow-left.png"
+    id: arrow_left
+    type: rgb565
+    transparency: alpha_channel
+    resize: 70x33
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/arrow-right.png"
+    id: arrow_right
+    type: rgb565
+    transparency: alpha_channel
+    resize: 70x33
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/light-on.png"
+    id: light_on
+    type: rgb565
+    transparency: alpha_channel
+    resize: 70x33
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/light-off.png"
+    id: light_off
+    type: rgb565
+    transparency: alpha_channel
+    resize: 70x33
+
+display:
+  - platform: ili9xxx
+    model: ili9341
+    id: display_ili9341
+    cs_pin: 39
+    dc_pin: 18
+    reset_pin: 17
+    invert_colors: false
+    dimensions:
+      width: 240
+      height: 320
+    rotation: 90
+    update_interval: 500ms
+    pages:
+      - id: boot
+        lambda: |-
+          it.image(10, 75, id(esphome_logo));
+      - id: page_1
+        lambda: |-
+          it.image(5, 0, id(esphome_logo_mini));
+          it.printf(170, 5, id(lato16), Color::WHITE, "Uptime: %s", id(esp32_uptime).state.c_str());
+          it.printf(170, 25, id(lato16), Color::WHITE, "IP: %s", id(ip_address).state.c_str());
+
+          int bw = 70;
+          int bh = 33;
+
+          int wtg = 35;
+          int htg = 3;
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 0) + (bh * 0), id(out_01).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "01");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 0) + (bh * 0), id(out_02).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "02");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 0) + (bh * 0), id(out_03).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "03");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 0) + (bh * 0), id(out_04).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "04");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 1) + (bh * 1), id(out_05).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "05");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 1) + (bh * 1), id(out_06).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "06");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 1) + (bh * 1), id(out_07).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "07");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 1) + (bh * 1), id(out_08).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "08");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 2) + (bh * 2), id(out_09).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "09");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 2) + (bh * 2), id(out_10).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "10");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 2) + (bh * 2), id(out_11).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "11");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 2) + (bh * 2), id(out_12).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "12");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 3) + (bh * 3), id(out_13).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "13");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 3) + (bh * 3), id(out_14).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "14");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 3) + (bh * 3), id(out_15).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "15");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 3) + (bh * 3), id(out_16).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "16");
+
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 4) + (bh * 4), id(arrow_right));
+      - id: page_2
+        lambda: |-
+          it.image(5, 0, id(esphome_logo_mini));
+          it.printf(170, 5, id(lato16), Color::WHITE, "Uptime: %s", id(esp32_uptime).state.c_str());
+          it.printf(170, 25, id(lato16), Color::WHITE, "IP: %s", id(ip_address).state.c_str());
+
+          int bw = 70;
+          int bh = 33;
+
+          int wtg = 35;
+          int htg = 3;
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 0) + (bh * 0), id(out_17).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "17");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 0) + (bh * 0), id(out_18).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "18");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 0) + (bh * 0), id(out_19).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "19");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 0) + (bh * 0), id(out_20).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 0) + (bh * 0) + htg, id(lato20), Color::WHITE, "20");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 1) + (bh * 1), id(out_21).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "21");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 1) + (bh * 1), id(out_22).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "22");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 1) + (bh * 1), id(out_23).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "23");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 1) + (bh * 1), id(out_24).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 1) + (bh * 1) + htg, id(lato20), Color::WHITE, "24");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 2) + (bh * 2), id(out_25).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "25");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 2) + (bh * 2), id(out_26).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "26");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 2) + (bh * 2), id(out_27).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "27");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 2) + (bh * 2), id(out_28).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 2) + (bh * 2) + htg, id(lato20), Color::WHITE, "28");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 3) + (bh * 3), id(out_29).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 0) + (bw * 0) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "29");
+          it.image(10 + (5 * 1) + (bw * 1), 55 + (5 * 3) + (bh * 3), id(out_30).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 1) + (bw * 1) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "30");
+          it.image(10 + (5 * 2) + (bw * 2), 55 + (5 * 3) + (bh * 3), id(out_31).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 2) + (bw * 2) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "31");
+          it.image(10 + (5 * 3) + (bw * 3), 55 + (5 * 3) + (bh * 3), id(out_32).current_values.is_on() ? id(light_on) : id(light_off));
+          it.printf(10 + (5 * 3) + (bw * 3) + wtg, 55 + (5 * 3) + (bh * 3) + htg, id(lato20), Color::WHITE, "32");
+
+          it.image(10 + (5 * 0) + (bw * 0), 55 + (5 * 4) + (bh * 4), id(arrow_left));
+      - id: calibration
+        lambda: |-
+          it.filled_rectangle(5, 5, 10, 10, Color(255,255,0));  // lewy górny
+          it.filled_rectangle(305, 225, 10, 10, Color(255,255,0));  // prawy dolny
+
+      - id: screensaver
+        lambda: |-
+          it.fill(Color::BLACK);
+
+touchscreen:
+  platform: xpt2046
+  id: my_touchscreen
+  cs_pin: GPIO15
+  interrupt_pin: GPIO16
+  update_interval: 50ms
+  threshold: 400
+  transform:
+    mirror_y: true
+    mirror_x: false
+  calibration:
+    x_min: 628
+    x_max: 3637
+    y_min: 341
+    y_max: 3661
+  on_touch:
+    - script.execute: screensaver_script
+    - if: 
+        condition:
+          - display.is_displaying_page: page_1
+        then:
+          - lambda: |-
+              int x = touch.x;
+              int y = touch.y;
+              if (x >= 10 && x <= 80 && y >= 55 && y <= 88) {
+                auto call = id(out_01).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 55 && y <= 88) {
+                auto call = id(out_02).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 55 && y <= 88) {
+                auto call = id(out_03).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 55 && y <= 88) {
+                auto call = id(out_04).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 93 && y <= 126) {
+                auto call = id(out_05).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 93 && y <= 126) {
+                auto call = id(out_06).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 93 && y <= 126) {
+                auto call = id(out_07).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 93 && y <= 126) {
+                auto call = id(out_08).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 131 && y <= 164) {
+                auto call = id(out_09).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 131 && y <= 164) {
+                auto call = id(out_10).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 131 && y <= 164) {
+                auto call = id(out_11).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 131 && y <= 164) {
+                auto call = id(out_12).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 169 && y <= 202) {
+                auto call = id(out_13).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 169 && y <= 202) {
+                auto call = id(out_14).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 169 && y <= 202) {
+                auto call = id(out_15).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 169 && y <= 202) {
+                auto call = id(out_16).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 207 && y <= 240) {
+                id(display_ili9341).show_page(id(page_2));
+              }
+    - if:
+        condition:
+          - display.is_displaying_page: page_2
+        then:
+          - lambda: |-
+              int x = touch.x;
+              int y = touch.y;
+              if (x >= 10 && x <= 80 && y >= 55 && y <= 88) {
+                auto call = id(out_17).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 55 && y <= 88) {
+                auto call = id(out_18).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 55 && y <= 88) {
+                auto call = id(out_19).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 55 && y <= 88) {
+                auto call = id(out_20).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 93 && y <= 126) {
+                auto call = id(out_21).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 93 && y <= 126) {
+                auto call = id(out_22).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 93 && y <= 126) {
+                auto call = id(out_23).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 93 && y <= 126) {
+                auto call = id(out_24).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 131 && y <= 164) {
+                auto call = id(out_25).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 131 && y <= 164) {
+                auto call = id(out_26).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 131 && y <= 164) {
+                auto call = id(out_27).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 131 && y <= 164) {
+                auto call = id(out_28).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 169 && y <= 202) {
+                auto call = id(out_29).toggle();
+                call.perform();
+              }
+              else if (x >= 85 && x <= 155 && y >= 169 && y <= 202) {
+                auto call = id(out_30).toggle();
+                call.perform();
+              }
+              else if (x >= 160 && x <= 230 && y >= 169 && y <= 202) {
+                auto call = id(out_31).toggle();
+                call.perform();
+              }
+              else if (x >= 235 && x <= 305 && y >= 169 && y <= 202) {
+                auto call = id(out_32).toggle();
+                call.perform();
+              }
+              else if (x >= 10 && x <= 80 && y >= 207 && y <= 240) {
+                id(display_ili9341).show_page(id(page_1));
+              }
+font:
+  - file: "gfonts://Lato"
+    id: lato16
+    size: 16
+  - file: "gfonts://Lato@700"
+    id: lato20
+    size: 20
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 0
+      mode: INPUT_PULLUP
+      inverted: true
+    id: btn_display_wake
+    internal: true
+    on_click: 
+      then:
+        - if: 
+            condition:
+              - display.is_displaying_page: screensaver
+            then:
+              - display.page.show: page_1
+              - light.turn_on:
+                  id: backlight
+            else:
+              - light.turn_off:
+                  id: backlight
+              - delay: 1s
+              - display.page.show: screensaver
+
+script:
+  - id: end_boot_script
+    mode: restart
+    then:
+      - delay: 3s
+      - display.page.show: page_1
+      - script.execute: screensaver_script
+
+  - id: screensaver_script
+    mode: restart
+    then:
+      - delay: 20s
+      - light.turn_off:
+          id: backlight
+      - delay: 1s
+      - display.page.show: screensaver
