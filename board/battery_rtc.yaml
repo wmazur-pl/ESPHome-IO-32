@@ -1,0 +1,25 @@
+sensor:
+  - platform: ads1115
+    id: rtc_batt_raw
+    multiplexer: 'A0_GND'
+    gain: 4.096
+    update_interval: 30s
+    filters:
+      - multiply: 2.033
+    internal: true
+  - platform: template
+    name: "RTC Battery Voltage"
+    id: rtc_batt_filtered
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    icon: "mdi:battery"
+    update_interval: 30s
+    lambda: |-
+      if (isnan(id(rtc_batt_raw).state)) {
+        return NAN;  // ← to powoduje „unknown” w HA
+      }
+      if (id(rtc_batt_raw).state < 0.2) {
+        return NAN;  // ← ignorujemy nierealne wartości (np. -0.255 lub 0.000)
+      }
+      return id(rtc_batt_raw).state;
+    entity_category: "diagnostic"
