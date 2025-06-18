@@ -1,8 +1,12 @@
 sensor:
   - platform: uptime
+    name: "ESP32 Uptime"
     id: esp32_uptime_seconds
     update_interval: 60s
     entity_category: diagnostic
+    unit_of_measurement: "s"
+    device_class: duration
+    state_class: measurement
     on_raw_value:
       then:
         - text_sensor.template.publish:
@@ -35,4 +39,5 @@ text_sensor:
     name: "Uptime"
     id: esp32_uptime
     entity_category: diagnostic
+    internal: true
     icon: mdi:timer
