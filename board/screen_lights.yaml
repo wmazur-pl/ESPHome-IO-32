@@ -26,12 +26,12 @@ light:
     restore_mode: ALWAYS_ON
 
 image:
-  - file: "https://esphome.io/_static/made-for-esphome-black-on-white.png"
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/made-for-esphome-black-on-white.png"
     id: esphome_logo
     type: rgb565
     transparency: alpha_channel
     resize: 300x89
-  - file: "https://esphome.io/_static/made-for-esphome-black-on-white.png"
+  - file: "https://raw.githubusercontent.com/wmazur-pl/ESPHome-IO-32/refs/heads/main/assets/made-for-esphome-black-on-white.png"
     id: esphome_logo_mini
     type: rgb565
     transparency: alpha_channel
